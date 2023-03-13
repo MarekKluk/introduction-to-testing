@@ -1,9 +1,8 @@
 import { getUsersSortedByName } from './getUsersSortedByName';
-import getUsers from './getUsers';
+import { getUsers } from './getUsers';
 
 jest.mock('./getUsers', () => ({
 	default: jest.fn(),
-	__esModule: true
 }));
 
 describe('The getUsersSortedByName function', () => {
