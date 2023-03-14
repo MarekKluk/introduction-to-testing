@@ -58,25 +58,25 @@ describe('The getUsersWithPosts function', () => {
           userId: 1,
           id: 1,
           title: 'post 1',
-          body: 'this id post 1',
+          body: 'this is post 1',
         },
         {
           userId: 1,
           id: 2,
           title: 'post 2',
-          body: 'this id post 2',
+          body: 'this is post 2',
         },
         {
           userId: 2,
           id: 3,
           title: 'post 3',
-          body: 'this id post 3',
+          body: 'this is post 3',
         },
         {
           userId: 16,
           id: 4,
           title: 'post 4',
-          body: 'this id post 4',
+          body: 'this is post 4',
         },
       ]);
     });
@@ -94,13 +94,13 @@ describe('The getUsersWithPosts function', () => {
             userId: 1,
             id: 1,
             title: 'post 1',
-            body: 'this id post 1',
+            body: 'this is post 1',
           },
           {
             userId: 1,
             id: 2,
             title: 'post 2',
-            body: 'this id post 2',
+            body: 'this is post 2',
           },
         ],
       });
