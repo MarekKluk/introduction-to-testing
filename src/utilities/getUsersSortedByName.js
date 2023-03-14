@@ -1,13 +1,13 @@
-import getUsers from './getUsers';
+import { getUsers } from './getUsers';
 
 export async function getUsersSortedByName() {
-	try {
-		const users = await getUsers();
+  try {
+    const users = await getUsers();
 
-		return users.sort((firstUser, secondUser) => {
-			return secondUser.name.length - firstUser.name.length;
-		});
-	} catch {
-		return [];
-	}
+    return users.sort((firstUser, secondUser) => {
+      return secondUser.name.length - firstUser.name.length;
+    });
+  } catch {
+    return [];
+  }
 }
