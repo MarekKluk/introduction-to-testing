@@ -1,9 +1,8 @@
 import { getPostsSortedByTitle } from './getPostsSortedByTitle';
-import getPosts from './getPosts';
+import { getPosts } from './getPosts';
 
 jest.mock('./getPosts', () => ({
-  __esModule: true,
-  default: jest.fn(),
+  getPosts: jest.fn(),
 }));
 
 describe('The getPostsSortedByTitle function', () => {
