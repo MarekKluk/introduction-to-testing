@@ -26,91 +26,81 @@ describe('The getUsersWithPosts function', () => {
     });
   });
   describe('when the getUsers and getPosts functions are responding with a list of users and posts', () => {
+    const firstUser = {
+      id: 1,
+      name: 'Short name',
+      username: 'Bret',
+      email: 'Sincere@april.biz',
+      phone: '1-770-736-8031 x56442',
+      website: 'hildegard.org',
+    };
+    const secondUser = {
+      id: 2,
+      name: 'Very long name',
+      username: 'Antonette',
+      email: 'Shanna@melissa.tv',
+      phone: '010-692-6593 x09125',
+      website: 'anastasia.net',
+    };
+    const thirdUser = {
+      id: 3,
+      name: 'Medium name',
+      username: 'Samantha',
+      email: 'Nathan@yesenia.net',
+      phone: '1-463-123-4447',
+      website: 'ramiro.info',
+    };
+
+    const firstUserPosts = [
+      {
+        userId: 1,
+        id: 1,
+        title: 'post 1',
+        body: 'this is post 1',
+      },
+      {
+        userId: 1,
+        id: 2,
+        title: 'post 2',
+        body: 'this is post 2',
+      },
+    ];
+    const secondUserPosts = [
+      {
+        userId: 2,
+        id: 3,
+        title: 'post 3',
+        body: 'this is post 3',
+      },
+    ];
+    const fifthUserPosts = [
+      {
+        userId: 5,
+        id: 4,
+        title: 'post 4',
+        body: 'this is post 4',
+      },
+    ];
     beforeEach(() => {
-      getUsers.mockResolvedValue([
-        {
-          id: 1,
-          name: 'Short name',
-          username: 'Bret',
-          email: 'Sincere@april.biz',
-          phone: '1-770-736-8031 x56442',
-          website: 'hildegard.org',
-        },
-        {
-          id: 2,
-          name: 'Very long name',
-          username: 'Antonette',
-          email: 'Shanna@melissa.tv',
-          phone: '010-692-6593 x09125',
-          website: 'anastasia.net',
-        },
-        {
-          id: 3,
-          name: 'Medium name',
-          username: 'Samantha',
-          email: 'Nathan@yesenia.net',
-          phone: '1-463-123-4447',
-          website: 'ramiro.info',
-        },
-      ]);
+      getUsers.mockResolvedValue([firstUser, secondUser, thirdUser]);
       getPosts.mockResolvedValue([
-        {
-          userId: 1,
-          id: 1,
-          title: 'post 1',
-          body: 'this is post 1',
-        },
-        {
-          userId: 1,
-          id: 2,
-          title: 'post 2',
-          body: 'this is post 2',
-        },
-        {
-          userId: 2,
-          id: 3,
-          title: 'post 3',
-          body: 'this is post 3',
-        },
-        {
-          userId: 16,
-          id: 4,
-          title: 'post 4',
-          body: 'this is post 4',
-        },
+        ...firstUserPosts,
+        ...secondUserPosts,
+        ...fifthUserPosts,
       ]);
     });
     it('should return users with matching posts', async () => {
       const result = await getUsersWithPosts();
       expect(result[0]).toEqual({
-        id: 1,
-        name: 'Short name',
-        username: 'Bret',
-        email: 'Sincere@april.biz',
-        phone: '1-770-736-8031 x56442',
-        website: 'hildegard.org',
-        posts: [
-          {
-            userId: 1,
-            id: 1,
-            title: 'post 1',
-            body: 'this is post 1',
-          },
-          {
-            userId: 1,
-            id: 2,
-            title: 'post 2',
-            body: 'this is post 2',
-          },
-        ],
+        ...firstUser,
+        posts: firstUserPosts,
+      });
+      expect(result[1]).toEqual({
+        ...secondUser,
+        posts: secondUserPosts,
       });
       expect(result[2]).toEqual({
-        id: 3,
-        name: 'Medium name',
-        username: 'Samantha',
-        email: 'Nathan@yesenia.net',
-        phone: '1-463-123-4447',
-        website: 'ramiro.info',
+        ...thirdUser,
         posts: [],
       });
     });

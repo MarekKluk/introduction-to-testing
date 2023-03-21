@@ -3,14 +3,13 @@ import { getPosts } from './getPosts';
 
 export async function getUsersWithPosts() {
   try {
-    const posts = await getPosts();
-    const users = await getUsers();
+    const [posts, users] = await Promise.all([getPosts(), getUsers()]);
 
     return users.map((user) => {
-      const usersMatchingPosts = posts.filter(
+      const postsMatchingTheUser = posts.filter(
         (post) => post.userId === user.id,
       );
-      return { ...user, posts: usersMatchingPosts };
+      return { ...user, posts: postsMatchingTheUser };
     });
   } catch {
     return [];

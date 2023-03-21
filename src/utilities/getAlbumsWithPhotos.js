@@ -3,8 +3,7 @@ import { getAlbums } from './getAlbums';
 
 export async function getAlbumsWithPhotos() {
   try {
-    const photos = await getPhotos();
-    const albums = await getAlbums();
+    const [photos, albums] = await Promise.all([getPhotos(), getAlbums()]);
 
     return albums.map((album) => {
       const albumsMatchingPhotos = photos.filter(
